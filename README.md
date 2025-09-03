@@ -30,5 +30,7 @@ After model training for inference you can run this command:
 nnUNetv2_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -tr -d DATASET_NAME_OR_ID -tr nnUNetTrainerFocal -c 3d_fullres -f all --save_probabilities
 ```
 when you use ```save_probabilities``` the probability map of classes will be exported. 
+For more detailed command please check original nnUNet repository [here](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/how_to_use_nnunet.md). 
+Ok, now if you want to calibrate the model using label smoothing you can train the models with Cross Entropy (CE) or Dice+CE loss and increase the alpha value in the loss function. I recommend you to set the alpha value between 0.2 and 0.4. 
 
   
