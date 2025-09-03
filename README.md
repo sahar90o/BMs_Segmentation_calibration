@@ -35,6 +35,6 @@ Ok, now if you want to calibrate the model using label smoothing you can train t
 ```
 loss = DiceCELoss(softmax=True, to_onehot_y=True, label_smoothing=0.3)
 ```
-
+You can do similar for both nnUNet and UNet from Monai library or any other model you later want to add. 
 
   
