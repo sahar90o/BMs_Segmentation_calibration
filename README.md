@@ -18,7 +18,12 @@ export nnUNet_raw="mnt/Data/sahar/segmentation/nnUNet_raw"
 export nnUNet_preprocessed="mnt/Data/sahar/segmentation/nnUNet_preprocessed"
 export nnUNet_results="mnt/Data/sahar/segmentation/nnUNet_results"
 ```
-Please replace the above directories with your own directories :) Also add data fingerprint. 
+Please replace the above directories with your own directories 🙂.
+📍The most important thing you should do before model training is exporting your data fingerprint. This dataset fingerprint specifies the peoperties of your data including
+image size, voxel spacing, intensity, and .... Please run the command below to extract your dataset fingerprint: 
+```
+nnUNetv2_plan_and_preprocess -d DATASET_ID --verify_dataset_integrity
+```
 
 ## :chart_with_upwards_trend::chart_with_downwards_trend: Train and Test Models 
 Perfect :clap:! Now you can train your model. In this repository we have different trainers which are located in nnunetv2/training/nnUNetTrainer. To start training you should specify the model, the configurations,and the data fold for training. You can specify the model by ```-tr```, the configuration by ```-c```, the fold by ```-f```. For the configuration I only used 3d_fullres. For nnUNet you can also use 2d, 3d_lowres, and 3d_cascade_lowres depending on your preprocessed data. You can train the model for fold 0,1, 2, 3, 4, or train it on all folds using ```-f all```. You can train a model using command below: 
