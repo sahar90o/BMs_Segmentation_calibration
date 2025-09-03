@@ -20,7 +20,15 @@ export nnUNet_results="mnt/Data/sahar/segmentation/nnUNet_results"
 ```
 Please replace the above directories with your own directories :) Also add data fingerprint. 
 
-## Model Training 
-Perfect! Now you can train your model. In this repository we have different trainers which are located in nnunetv2/training/nnUNetTrainer. To start training you should specify the model, the configurations,and the data fold for training. You can specify the model by ```-tr```, the configuration by ```-c```, the fold by ```-f```. For the configuration I only used 3d_fullres. For nnUNet you can also use 2d, 3d_lowres, and 3d_cascade_lowres depending on your preprocessed data. You can train the model for fold 0,1, 2, 3, 4, or train it on all folds. 
+## Train and Test Models 
+Perfect! Now you can train your model. In this repository we have different trainers which are located in nnunetv2/training/nnUNetTrainer. To start training you should specify the model, the configurations,and the data fold for training. You can specify the model by ```-tr```, the configuration by ```-c```, the fold by ```-f```. For the configuration I only used 3d_fullres. For nnUNet you can also use 2d, 3d_lowres, and 3d_cascade_lowres depending on your preprocessed data. You can train the model for fold 0,1, 2, 3, 4, or train it on all folds using ```-f all```. You can train a model using command below: 
+```
+nnUNetv2_train Dataset_name_or_ID -tr nnUNetTrainerFocal -c 3d_fullres -f all
+```
+After model training for inference you can run this command: 
+```
+nnUNetv2_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -tr -d DATASET_NAME_OR_ID -tr nnUNetTrainerFocal -c 3d_fullres -f all --save_probabilities
+```
+when you use ```save_probabilities``` the probability map of classes will be exported. 
 
   
