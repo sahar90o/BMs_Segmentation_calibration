@@ -21,6 +21,6 @@ export nnUNet_results="mnt/Data/sahar/segmentation/nnUNet_results"
 Please replace the above directories with your own directories :) 
 
 ## Model Training 
-Perfect! Now you can train your model. 
+Perfect! Now you can train your model. In this repository we have different trainers which are located in nnunetv2/training/nnUNetTrainer. To start training you should specify the model, the configurations,and the data fold for training. 
 
   
