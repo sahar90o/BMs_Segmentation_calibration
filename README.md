@@ -31,7 +31,7 @@ nnUNetv2_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -tr -d DATASET_NAME_OR_ID -tr 
 ```
 When you use ```--save_probabilities``` not only the segmentation mask, but also the probability map for each class will be exported.
 For more detailed commands please check original nnUNet repository [here](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/how_to_use_nnunet.md). 
-Ok, now if you want to calibrate the model using label smoothing you can train the models with Cross Entropy (CE) or Dice+CE loss and increase the label_smoothing parameter in the loss function (the defualt value is zero). I recommend you to set the smoothing parameter between 0.2 and 0.4. You should modify label smoothing manually. For example to train MonaiUNet with Dice+CE loss. Please open nnUNetTrainerMonaiUnetDiceCE which is located in nnunetv2/training/nnUNetTrainer and in line 72 modify the parameters of DiceCELoss:
+Ok, now if you want to calibrate the model using label smoothing you can train the models with Cross Entropy (CE) or Dice+CE loss and increase the label_smoothing parameter in the loss function (the defualt value is zero). I recommend you to set the smoothing parameter between 0.2 and 0.4 the smoothing parameter closer to one would result in underconfident model with even low accuracy. You should modify label smoothing manually. For example to train MonaiUNet with Dice+CE loss. Please open nnUNetTrainerMonaiUnetDiceCE which is located in nnunetv2/training/nnUNetTrainer and in line 72 modify the parameters of DiceCELoss:
 ```
 loss = DiceCELoss(softmax=True, to_onehot_y=True, label_smoothing=0.3)
 ```
