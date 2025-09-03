@@ -18,7 +18,7 @@ export nnUNet_raw="mnt/Data/sahar/segmentation/nnUNet_raw"
 export nnUNet_preprocessed="mnt/Data/sahar/segmentation/nnUNet_preprocessed"
 export nnUNet_results="mnt/Data/sahar/segmentation/nnUNet_results"
 ```
-Please replace the above directories with your own directories 🙂.
+Please replace the above directories with your own directories 🙂.  
 📍The most important thing you should do before model training is exporting your data fingerprint. This dataset fingerprint specifies the peoperties of your data including
 image size, voxel spacing, intensity, and .... Please run the command below to extract your dataset fingerprint: 
 ```
