@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-from monai.losses import DiceFocalLoss, FocalLoss, DiceLoss
+from monai.losses import DiceFocalLoss, FocalLoss, DiceCELoss
 from monai.networks.nets import Unet
 from torch import nn
 from torchinfo import summary
@@ -12,8 +12,8 @@ from nnunetv2.utilities.plans_handling.plans_handler import PlansManager, Config
 from nnunetv2.training.loss.custom_losses import DC_and_FOCAL_loss
 
 
-class nnUNetTrainerDice2(nnUNetTrainer):
-    """ Swin-UMamba """
+class nnUNetTrainerDiceCE(nnUNetTrainer):
+
 
     def _build_loss(self):
         if self.label_manager.has_regions:
@@ -25,7 +25,7 @@ class nnUNetTrainerDice2(nnUNetTrainer):
             #                          weight_focal=1, weight_dice=1,
             #                          ignore_label=self.label_manager.ignore_label,
             #                          dice_class=MemoryEfficientSoftDiceLoss)
-            loss = DiceLoss(to_onehot_y=True, softmax=True)
+            loss = DiceCELoss(to_onehot_y=True, softmax=True,label_smoothing=0.1)
 
         # if self._do_i_compile():
         #     loss.dc = torch.compile(loss.dc)

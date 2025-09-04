@@ -13,7 +13,7 @@ from nnunetv2.training.loss.custom_losses import DC_and_FOCAL_loss
 
 
 class nnUNetTrainerDiceFocal(nnUNetTrainer):
-    """ Swin-UMamba """
+
 
     def _build_loss(self):
         if self.label_manager.has_regions:

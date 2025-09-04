@@ -13,8 +13,8 @@ from nnunetv2.utilities.plans_handling.plans_handler import PlansManager, Config
 from nnunetv2.training.loss.custom_losses import DC_and_FOCAL_loss
 
 
-class nnUNetTrainerMonaiUnetBCE(nnUNetTrainer):
-    """ Swin-UMamba """
+class MonaiUnetFocal(nnUNetTrainer):
+
 
     def __init__(self, plans: dict, configuration: str, fold: int, dataset_json: dict, unpack_dataset: bool = True,
                  device: torch.device = torch.device('cuda')):
@@ -69,7 +69,7 @@ class nnUNetTrainerMonaiUnetBCE(nnUNetTrainer):
             #                          weight_focal=1, weight_dice=1,
             #                          ignore_label=self.label_manager.ignore_label,
             #                          dice_class=MemoryEfficientSoftDiceLoss)
-            loss = FocalLoss(use_softmax=True, to_onehot_y=True,gamma=0)
+            loss = FocalLoss(use_softmax=True, to_onehot_y=True,gamma=2)
 
         # if self._do_i_compile():
         #     loss.dc = torch.compile(loss.dc)

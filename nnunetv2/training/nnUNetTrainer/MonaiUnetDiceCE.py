@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 from monai.losses import DiceFocalLoss
-from monai.losses import DiceLoss
+from monai.losses import DiceLoss, DiceCELoss
 from monai.networks.nets import Unet
 from torch import nn
 from torchinfo import summary
@@ -13,8 +13,8 @@ from nnunetv2.utilities.plans_handling.plans_handler import PlansManager, Config
 from nnunetv2.training.loss.custom_losses import DC_and_FOCAL_loss
 
 
-class nnUNetTrainerMonaiUnetDice(nnUNetTrainer):
-    """ Swin-UMamba """
+class MonaiUnetDiceCE(nnUNetTrainer):
+
 
     def __init__(self, plans: dict, configuration: str, fold: int, dataset_json: dict, unpack_dataset: bool = True,
                  device: torch.device = torch.device('cuda')):
@@ -36,7 +36,7 @@ class nnUNetTrainerMonaiUnetDice(nnUNetTrainer):
             #plans_manager: PlansManager,
             #dataset_json,
             #configuration_manager: ConfigurationManager,
-            enable_deep_supervision: bool = False,
+            enable_deep_supervision: bool = True,
             use_pretrain: bool = False,
     ) -> nn.Module:
         # label_manager = plans_manager.get_label_manager(dataset_json)
@@ -51,7 +51,7 @@ class nnUNetTrainerMonaiUnetDice(nnUNetTrainer):
                       320,
                       320),
             strides=(1, 2, 2, 2, 2, 1),
-            dropout=0.3,
+            dropout=0.2,
         )
         print(model)
 
@@ -69,7 +69,7 @@ class nnUNetTrainerMonaiUnetDice(nnUNetTrainer):
             #                          weight_focal=1, weight_dice=1,
             #                          ignore_label=self.label_manager.ignore_label,
             #                          dice_class=MemoryEfficientSoftDiceLoss)
-            loss = DiceLoss(softmax=True, to_onehot_y=True)
+            loss = DiceCELoss(softmax=True, to_onehot_y=True, label_smoothing=0.1)
 
         # if self._do_i_compile():
         #     loss.dc = torch.compile(loss.dc)

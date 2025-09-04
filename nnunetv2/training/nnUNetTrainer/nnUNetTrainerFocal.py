@@ -12,7 +12,7 @@ from nnunetv2.utilities.plans_handling.plans_handler import PlansManager, Config
 from nnunetv2.training.loss.custom_losses import DC_and_FOCAL_loss
 
 
-class nnUNetTrainerFocal2(nnUNetTrainer):
+class nnUNetTrainerFocal(nnUNetTrainer):
     """ Swin-UMamba """
 
     def _build_loss(self):
@@ -25,7 +25,7 @@ class nnUNetTrainerFocal2(nnUNetTrainer):
             #                          weight_focal=1, weight_dice=1,
             #                          ignore_label=self.label_manager.ignore_label,
             #                          dice_class=MemoryEfficientSoftDiceLoss)
-            loss = FocalLoss(to_onehot_y=True, use_softmax=True, gamma=1.5)
+            loss = FocalLoss(to_onehot_y=True, use_softmax=True, gamma=2)
 
         # if self._do_i_compile():
         #     loss.dc = torch.compile(loss.dc)
