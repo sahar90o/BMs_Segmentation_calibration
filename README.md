@@ -26,10 +26,12 @@ nnUNetv2_plan_and_preprocess -d DATASET_ID --verify_dataset_integrity
 ```
 
 ## :chart_with_upwards_trend::chart_with_downwards_trend: Train and Test Models 
-Perfect :clap:! Now you can train your model. In this repository we have different trainers which are located in nnunetv2/training/nnUNetTrainer. To start training you should specify the model, the configurations,and the data fold for training. You can specify the model by ```-tr```, the configuration by ```-c```, the fold by ```-f```. For the configuration I only used 3d_fullres. For nnUNet you can also use 2d, 3d_lowres, and 3d_cascade_lowres depending on your preprocessed data. You can train the model for fold 0,1, 2, 3, 4, or train it on all folds using ```-f all```. You can train a model using command below: 
+Perfect :clap:! Now you can train your model. In this repository we have different trainers which are located in nnunetv2/training/nnUNetTrainer. To start training you should specify the model, the configurations,and the data fold for training. You can specify the model by ```-tr```. For nnUNet you can also use 2d, 3d_lowres, and 3d_cascade_lowres depending on your preprocessed data. You can train the model for fold 0,1, 2, 3, 4, or train it on all folds using ```all```. For example if your dataset ID is 033, you can train nnUNet with focal loss and 3d_fullres configuration, on all data folds using the below command: 
 ```
-nnUNetv2_train Dataset_name_or_ID -tr nnUNetTrainerFocal -c 3d_fullres -f all
+nnUNetv2_train 003 3d_fullres all -tr nnUNetTrainerFocal
 ```
+In general for training you should follow this command: 
+
 After model training for inference you can run this command: 
 ```
 nnUNetv2_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -tr -d DATASET_NAME_OR_ID -tr nnUNetTrainerFocal -c 3d_fullres -f all --save_probabilities
