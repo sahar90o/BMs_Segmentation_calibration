@@ -7,7 +7,7 @@ Dice+CE, CE, Focal, Dice+Focal, and NACL.
 To start, please first install [PyTorch](https://pytorch.org/get-started/locally/) & [MONAI](https://docs.monai.io/en/latest/installation.html). Then clone this repository and install dependecies: 
 ```
 git clone https://github.com/sahar90o/BMs_Segmentation_calibration.git
-cd BMs_Segmentation_private
+cd BMs_Segmentation_calibration
 pip install e .
 ```
 ## :open_file_folder: Data Preparation
