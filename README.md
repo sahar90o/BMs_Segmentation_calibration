@@ -31,6 +31,9 @@ Perfect :clap:! Now you can train your model. In this repository we have differe
 nnUNetv2_train 003 3d_fullres all -tr nnUNetTrainerFocal
 ```
 In general for training you should follow this command: 
+```
+nnUNetv2 DATASE_NAME_OR_ID configuration Fold -tr Trainer
+```
 
 After model training for inference you can run this command: 
 ```
